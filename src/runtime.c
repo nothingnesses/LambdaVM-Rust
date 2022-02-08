@@ -875,13 +875,6 @@ Lnk normal_go(Worker* mem, u64 host, u64 sidx, u64 slen) {
         rec_locs[rec_size++] = get_loc(term,2);
         break;
       }
-      case OP2: {
-        if (slen > 1) {
-          rec_locs[rec_size++] = get_loc(term,0);
-          rec_locs[rec_size++] = get_loc(term,1);
-          break;
-        }
-      }
       case CTR: case CAL: {
         u64 arity = (u64)get_ari(term);
         for (u64 i = 0; i < arity; ++i) {

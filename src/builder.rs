@@ -162,8 +162,8 @@ pub fn build_runtime_function(comp: &rb::RuleBook, rules: &[lang::Rule]) -> rt::
     // For each argument, if it is a redex and a PAR, apply the cal_par rule
     for (i, redex) in dynfun.redex.iter().enumerate() {
       let i = i as u64;
-      if *redex && rt::get_tag(rt::ask_arg(mem, term, i)) == rt::PAR {
-        rt::cal_par(mem, host, term, rt::ask_arg(mem, term, i), i);
+      if *redex && rt::get_tag(rt::ask_arg(mem, term, i)) == rt::SUP {
+        rt::cal_sup(mem, host, term, rt::ask_arg(mem, term, i), i);
         return true;
       }
     }

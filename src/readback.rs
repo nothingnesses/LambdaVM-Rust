@@ -40,7 +40,7 @@ pub fn as_code(mem: &Worker, comp: &Option<rb::RuleBook>, host: u64) -> String {
         name(ctx, lam, depth + 1);
         name(ctx, arg, depth + 1);
       }
-      rt::PAR => {
+      rt::SUP => {
         let arg0 = rt::ask_arg(ctx.mem, term, 0);
         let arg1 = rt::ask_arg(ctx.mem, term, 1);
         name(ctx, arg0, depth + 1);
@@ -135,7 +135,7 @@ pub fn as_code(mem: &Worker, comp: &Option<rb::RuleBook>, host: u64) -> String {
         let argm_txt = go(ctx, stacks, argm, depth + 1);
         format!("({} {})", func_txt, argm_txt)
       }
-      rt::PAR => {
+      rt::SUP => {
         let col = rt::get_ext(term);
         let empty = &Vec::new();
         let stack = stacks.get(col).unwrap_or(empty);
