@@ -62,6 +62,7 @@ pub fn reduce(heap: &Heap, prog: &Program, tids: &[usize], root: u64, debug: boo
 }
 
 pub fn reducer(heap: &Heap, prog: &Program, tids: &[usize], stop: &AtomicBool, root: u64, tid: usize, debug: bool) {
+  // #[derive(Debug)]
   enum State { Init, Visit, Call, Apply, Blink, Steal }
 
   let debug_print = |term: Ptr| {
@@ -83,12 +84,19 @@ pub fn reducer(heap: &Heap, prog: &Program, tids: &[usize], stop: &AtomicBool, r
     (0, u64::MAX)
   };
   let mut state = State::Init;
+  // let mut count = 0;
 
   // State Machine
   'main: loop {
     macro_rules! goto {
       ($variant:ident) => {
         state = State::$variant;
+//         println!(
+// r#"
+// count: {}
+// state: {:?}
+// host: {}"#, count, state, host);
+//         count += 1;
         continue 'main;
       };
     }

@@ -348,6 +348,12 @@ pub fn arity_of(arit: &ArityMap, lnk: Ptr) -> u64 {
 // Given a location, loads the ptr stored on it
 pub fn load_ptr(heap: &Heap, loc: u64) -> Ptr {
   unsafe { heap.node.get_unchecked(loc as usize).load(Ordering::Relaxed) }
+//   heap.node.get(loc as usize).expect(&format!(
+// r#"
+// node length: {}
+// loc: {}
+// "#,
+//   heap.node.len(), loc)).load(Ordering::Relaxed)
 }
 
 // Moves a pointer to another location
